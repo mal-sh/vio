@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viora | Your AI Health Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .quote-bubble {
+            border-radius: 2em;
+            position: relative;
+        }
+        .quote-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50px;
+            border-width: 20px 20px 0;
+            border-style: solid;
+            border-color: white transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .scroll-hidden::-webkit-scrollbar {
+            display: none;
+        }
+        .hero-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .pulse-animation {
+            animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+            50% {
+                transform: translatey(-20px);
+            }
+            100% {
+                transform: translatey(0px);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-heartbeat text-indigo-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">Viora</span>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#features" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Features
+                    </a>
+                    <a href="#how-it-works" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        How It Works
+                    </a>
+                    <a href="#testimonials" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Testimonials
+                    </a>
+                    <a href="#contact" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Contact
+                    </a>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button class="gradient-bg text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition duration-150">
+                        Get Started
+                    </button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden sm:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#features" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Features</a>
+                <a href="#how-it-works" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">How It Works</a>
+                <a href="#testimonials" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Testimonials</a>
+                <a href="#contact" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+                <div class="px-4 py-2">
+                    <button class="gradient-bg text-white w-full px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition duration-150">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Improved Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 md:pb-32 lg:py-32">
+            <div class="lg:w-1/2 text-center lg:text-left mb-16 lg:mb-0 lg:pr-12">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                    <span class="block text-gray-900">Your Personal</span>
+                    <span class="block gradient-text">AI Health Companion</span>
+                </h1>
+                <p class="text-xl font-light text-gray-600 mb-8">
+                    Empowering you with 24/7 compassionate care, health monitoring, and emotional support.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                    <a href="#" class="gradient-bg flex items-center justify-center px-8 py-3 rounded-full text-white text-lg font-medium hover:opacity-90 transition-all transform hover:-translate-y-1">
+                        <i class="fas fa-play-circle mr-2"></i> Watch Demo
+                    </a>
+                    <a href="#" class="bg-white border-2 border-indigo-500 text-indigo-600 px-8 py-3 rounded-full text-lg font-medium hover:bg-indigo-50 transition-all transform hover:-translate-y-1">
+                        Learn More
+                    </a>
+                </div>
+                
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                    <div class="flex items-center">
+                        <div class="flex -space-x-2">
+                            <img class="h-10 w-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User avatar">
+                            <img class="h-10 w-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User avatar">
+                            <img class="h-10 w-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/68.jpg" alt="User avatar">
+                        </div>
+                        <span class="ml-3 text-gray-600">Trusted by <span class="font-semibold">10,000+</span> users</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 relative">
+                <div class="relative float-animation">
+                    <div class="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto">
+                        <!-- Main circle with gradient border -->
+                        <div class="absolute inset-0 rounded-full border-8 border-indigo-200 border-opacity-30 animate-spin-slow"></div>
+                        <div class="absolute inset-2 rounded-full border-8 border-indigo-300 border-opacity-50 animate-spin-slow-reverse"></div>
+                        
+                        <!-- Phone mockup with health data -->
+                        <div class="absolute -right-4 -bottom-4 w-48 h-96 bg-gray-900 rounded-3xl shadow-2xl overflow-hidden border-8 border-gray-800 transform rotate-12">
+                            <div class="absolute inset-0 bg-indigo-50 opacity-5"></div>
+                            <div class="relative h-full flex flex-col p-4">
+                                <!-- Header with time -->
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-white text-sm font-medium">9:41 AM</span>
+                                    <div class="flex space-x-2">
+                                        <i class="fas fa-signal text-white text-xs"></i>
+                                        <i class="fas fa-wifi text-white text-xs"></i>
+                                        <i class="fas fa-battery-full text-white text-xs"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Health stats -->
+                                <div class="bg-white rounded-2xl p-4 mb-3">
+                                    <div class="flex items-center mb-3">
+                                        <div class="bg-indigo-100 rounded-lg p-2 mr-3">
+                                            <i class="fas fa-heartbeat text-indigo-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500">Heart Rate</p>
+                                            <p class="font-bold text-indigo-600">72 <span class="text-gray-500 text-xs font-normal">bpm</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+                                        <div class="h-full bg-indigo-500 rounded-full w-3/4"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-2xl p-4 mb-3">
+                                    <div class="flex items-center mb-3">
+                                        <div class="bg-indigo-100 rounded-lg p-2 mr-3">
+                                            <i class="fas fa-walking text-indigo-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500">Today's Steps</p>
+                                            <p class="font-bold text-indigo-600">4,387 <span class="text-gray-500 text-xs font-normal">steps</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+                                        <div class="h-full bg-indigo-500 rounded-full w-2/3"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-2xl p-4 flex-1 relative overflow-hidden">
+                                    <div class="absolute top-4 right-4 text-xs text-gray-500">Viora</div>
+                                    <div class="flex items-center mt-6 mb-4">
+                                        <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                                            <i class="fas fa-robot text-indigo-600"></i>
+                                        </div>
+                                        <p class="text-xs bg-indigo-50 px-3 py-2 rounded-lg">Hi there! How are you feeling today?</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <p class="text-xs bg-gray-200 px-3 py-2 rounded-lg ml-8 mr-3">I feel a bit tired</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating chat bubble -->
+                        <div class="absolute -left-4 top-16 bg-white p-4 rounded-2xl shadow-lg flex items-center">
+                            <div class="bg-indigo-500 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-bell text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-800">Time for your</p>
+                                <p class="text-xs text-gray-600">morning medication</p>
+                            </div>
+                        </div>
+                        
+                        <!-- ECG line animation -->
+                        <div class="absolute top-1/2 left-0 w-full">
+                            <svg viewBox="0 0 300 50" class="text-indigo-500">
+                                <path d="M0,25 Q60,5 120,35 Q180,5 240,25 Q300,45 300,25" stroke="currentColor" fill="none" stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000" class="animate-draw-path">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wave divider -->
+        <div class="hero-wave"></div>
+    </div>
+
+    <!-- Problem Statement -->
+    <div class="bg-indigo-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white p-8 rounded-xl shadow-sm">
+                <blockquote class="quote-bubble p-6 bg-white shadow-sm">
+                    <p class="text-lg font-medium text-gray-800 italic">
+                        "Today's health solutions are reactive, not proactive — offering little support for continuous monitoring, daily care needs, or emotional well-being, especially for those managing chronic conditions or living alone."
+                    </p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Features Section -->
+<section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                <span class="gradient-text">AI-Powered</span> Health Features
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Viora combines cutting-edge AI with compassionate care to support your health journey
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="feature-card bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl border border-gray-100">
+                <div class="bg-indigo-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-heartbeat text-indigo-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">24/7 Health Monitoring</h3>
+                <p class="text-gray-600 mb-4">
+                    Continuous tracking of vital signs, medication schedules, and symptoms with intelligent alerts.
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Real-time anomaly detection</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Personalized health baselines</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Emergency contact integration</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl border border-gray-100">
+                <div class="bg-indigo-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-comment-medical text-indigo-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Emotional Companion</h3>
+                <p class="text-gray-600 mb-4">
+                    Always available to listen, provide comfort, and offer mental health support when you need it.
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Mood tracking & analysis</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Therapeutic conversations</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Mindfulness exercises</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl border border-gray-100">
+                <div class="bg-indigo-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-user-md text-indigo-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Medical Intelligence</h3>
+                <p class="text-gray-600 mb-4">
+                    Evidence-based health insights and recommendations tailored to your unique profile.
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Symptom checker</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Medication interaction alerts</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                        <span>Health trend analysis</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                How <span class="gradient-text">Viora</span> Works
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Simple setup, intelligent care - your health companion in three easy steps
+            </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center justify-between mb-16">
+            <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
+                <div class="flex items-start mb-8">
+                    <div class="bg-indigo-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <span class="font-bold">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Setup</h3>
+                        <p class="text-gray-600">
+                            Tell Viora about your health history, medications, and preferences in a simple 5-minute conversation.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start mb-8">
+                    <div class="bg-indigo-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <span class="font-bold">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Connect Your Devices</h3>
+                        <p class="text-gray-600">
+                            Sync with your wearables, smart scales, and other health devices for comprehensive monitoring.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="bg-indigo-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <span class="font-bold">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">24/7 Companion</h3>
+                        <p class="text-gray-600">
+                            Viora learns your patterns, provides reminders, checks in on you, and alerts caregivers if needed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 relative">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 max-w-md mx-auto">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                            <i class="fas fa-robot text-indigo-600"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm bg-indigo-50 px-4 py-3 rounded-lg">Hi there! I'm Viora. Let's get to know each other. What health goals are most important to you?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3 mb-4">
+                        <button class="w-full text-left text-sm bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+                            Manage my chronic condition better
+                        </button>
+                        <button class="w-full text-left text-sm bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+                            Improve my overall wellness
+                        </button>
+                        <button class="w-full text-left text-sm bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition">
+                            Help with medication management
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="text" placeholder="Type your response..." class="flex-1 text-sm border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        <button class="bg-indigo-500 text-white px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="absolute -bottom-8 -left-8 bg-indigo-500 text-white p-4 rounded-xl shadow-lg z-10 hidden lg:block">
+                    <div class="flex items-center">
+                        <div class="bg-white bg-opacity-20 rounded-full p-2 mr-3">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold">Time for your</p>
+                            <p class="text-xs">blood pressure medication</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -top-8 -right-8 bg-white p-4 rounded-xl shadow-lg border border-gray-100 z-10 hidden lg:block">
+                    <div class="flex items-center">
+                        <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                            <i class="fas fa-heartbeat text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Heart Rate</p>
+                            <p class="font-bold text-indigo-600">72 <span class="text-gray-500 text-xs font-normal">bpm</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="#" class="gradient-bg text-white px-8 py-3 rounded-full text-lg font-medium hover:opacity-90 transition-all transform hover:-translate-y-1 inline-flex items-center">
+                Start Your Health Journey Today
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Trusted by <span class="gradient-text">Thousands</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Hear from people whose lives have been transformed by Viora
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah J." class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold text-gray-900">Sarah J.</h4>
+                        <p class="text-indigo-600 text-sm">Diabetes Patient</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    "Viora reminds me to check my blood sugar, tracks my readings, and even notices patterns I miss. It's like having a nurse with me all day."
+                </p>
+                <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Robert T." class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold text-gray-900">Robert T.</h4>
+                        <p class="text-indigo-600 text-sm">Caregiver</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    "As someone caring for an aging parent, Viora gives me peace of mind. I get alerts if anything seems wrong, and it keeps my mom company when I can't be there."
+                </p>
+                <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <div class="flex items-center mb-4">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria G." class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold text-gray-900">Maria G.</h4>
+                        <p class="text-indigo-600 text-sm">Heart Patient</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    "After my heart surgery, Viora helped me recover faster with daily check-ins, exercise reminders, and spotting warning signs before I even felt them."
+                </p>
+                <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <div class="inline-flex items-center bg-indigo-50 rounded-full px-6 py-3">
+                <i class="fas fa-shield-alt text-indigo-500 mr-2"></i>
+                <span class="text-sm font-medium text-gray-700">HIPAA compliant • End-to-end encrypted • Privacy first</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Simple, <span class="gradient-text">Transparent</span> Pricing
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose the plan that fits your needs
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Basic Plan -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Basic</h3>
+                <p class="text-gray-600 mb-6">Essential health monitoring</p>
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-gray-900">$9</span>
+                    <span class="text-gray-600">/month</span>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Medication reminders</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Basic health tracking</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Daily check-ins</span>
+                    </li>
+                    <li class="flex items-center text-gray-400">
+                        <i class="fas fa-times mr-2"></i>
+                        <span>Advanced analytics</span>
+                    </li>
+                    <li class="flex items-center text-gray-400">
+                        <i class="fas fa-times mr-2"></i>
+                        <span>Caregiver alerts</span>
+                    </li>
+                </ul>
+                <button class="w-full border-2 border-indigo-500 text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-indigo-50 transition">
+                    Get Started
+                </button>
+            </div>
+            
+            <!-- Premium Plan (Featured) -->
+            <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-indigo-500 relative">
+                <div class="absolute top-0 right-0 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                    MOST POPULAR
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Premium</h3>
+                <p class="text-gray-600 mb-6">Complete health companion</p>
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-gray-900">$19</span>
+                    <span class="text-gray-600">/month</span>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>All Basic features</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Advanced health analytics</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Caregiver alerts & reports</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Emotional support</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Priority support</span>
+                    </li>
+                </ul>
+                <button class="w-full gradient-bg text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition">
+                    Get Started
+                </button>
+            </div>
+            
+            <!-- Family Plan -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Family</h3>
+                <p class="text-gray-600 mb-6">Care for your loved ones</p>
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-gray-900">$49</span>
+                    <span class="text-gray-600">/month</span>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Up to 5 users</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>All Premium features</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Family dashboard</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Shared caregiver access</span>
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i class="fas fa-check text-indigo-500 mr-2"></i>
+                        <span>Dedicated support</span>
+                    </li>
+                </ul>
+                <button class="w-full border-2 border-indigo-500 text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-indigo-50 transition">
+                    Get Started
+                </button>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Need something different? We offer custom enterprise solutions for hospitals, senior living facilities, and healthcare providers.
+                <a href="#contact" class="text-indigo-600 font-medium hover:underline">Contact our team</a> to learn more.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Frequently Asked <span class="gradient-text">Questions</span>
+            </h2>
+            <p class="text-xl text-gray-600">
+                Everything you need to know about Viora
+            </p>
+        </div>
+        
+        <div class="space-y-6">
+            <!-- FAQ Item 1 -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                    <span class="text-lg font-medium text-gray-900">How does Viora protect my health data?</span>
+                    <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-6">
+                    <p class="text-gray-600">
+                        Viora uses end-to-end encryption and complies with HIPAA regulations to ensure your health data remains private and secure. We never sell your data and only share information with caregivers or medical professionals you explicitly authorize.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                    <span class="text-lg font-medium text-gray-900">What devices and apps does Viora integrate with?</span>
+                    <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-6">
+                    <p class="text-gray-600 mb-3">
+                        Viora works with most popular health devices and apps including:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                        <li>Apple Health, Google Fit, Fitbit</li>
+                        <li>Continuous glucose monitors (Dexcom, Freestyle Libre)</li>
+                        <li>Blood pressure monitors (Omron, Withings)</li>
+                        <li>Smart scales (Withings, Eufy)</li>
+                        <li>ECG devices (Apple Watch, KardiaMobile)</li>
+                    </ul>
+                    <p class="text-gray-600 mt-3">
+                        We're constantly adding new integrations based on user needs.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                    <span class="text-lg font-medium text-gray-900">Can Viora replace my doctor or emergency services?</span>
+                    <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-6">
+                    <p class="text-gray-600">
+                        No, Viora is not a replacement for professional medical care. While our AI can monitor your health, provide reminders, and alert you to potential issues, it's not a substitute for diagnosis or treatment by qualified healthcare providers. In emergencies, always contact local emergency services immediately.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                    <span class="text-lg font-medium text-gray-900">How does the emotional support feature work?</span>
+                    <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-6">
+                    <p class="text-gray-600">
+                        Viora uses natural language processing to understand your emotional state through conversation. It can provide compassionate responses, suggest mindfulness exercises, recommend mood-boosting activities, and alert caregivers if it detects signs of severe depression or anxiety. The more you interact, the better it understands your unique emotional patterns.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition">
+                    <span class="text-lg font-medium text-gray-900">Is there a free trial available?</span>
+                    <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-6">
+                    <p class="text-gray-600">
+                        Yes! We offer a 14-day free trial of our Premium plan so you can experience all of Viora's features. No credit card is required to start your trial. After 14 days, you can choose to continue with Premium, switch to Basic, or cancel with no obligation.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <p class="text-gray-600">
+                Still have questions? <a href="#contact" class="text-indigo-600 font-medium hover:underline">Contact our support team</a> - we're happy to help!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="gradient-bg py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Ready to Transform Your Health Journey?
+        </h2>
+        <p class="text-xl text-indigo-100 mb-8">
+            Join thousands of users who've found a smarter, more compassionate way to manage their health.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#" class="bg-white text-indigo-600 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition-all transform hover:-translate-y-1 inline-flex items-center justify-center">
+                Start Free Trial
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <a href="#" class="bg-indigo-800 bg-opacity-50 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-opacity-70 transition-all transform hover:-translate-y-1 inline-flex items-center justify-center">
+                <i class="fas fa-play-circle mr-2"></i> Watch Demo
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                    Get in <span class="gradient-text">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Have questions or want to learn more? Our team is here to help.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-indigo-100 rounded-lg p-3 mr-4">
+                            <i class="fas fa-envelope text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Email Us</h4>
+                            <p class="text-gray-600">support@viorahealth.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-indigo-100 rounded-lg p-3 mr-4">
+                            <i class="fas fa-phone-alt text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Call Us</h4>
+                            <p class="text-gray-600">+1 (800) 555-HEAL</p>
+                            <p class="text-sm text-gray-500">Monday-Friday, 9am-5pm EST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-indigo-100 rounded-lg p-3 mr-4">
+                            <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">Visit Us</h4>
+                            <p class="text-gray-600">123 Health Tech Way</p>
+                            <p class="text-gray-600">Boston, MA 02110</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <h4 class="font-bold text-gray-900 mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f text-gray-700"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter text-gray-700"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in text-gray-700"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram text-gray-700"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                <form>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <select id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                <option>General Inquiry</option>
+                                <option>Technical Support</option>
+                                <option>Partnership Opportunities</option>
+                                <option>Press Inquiry</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="gradient-bg text-white w-full px-6 py-3 rounded-lg font-medium hover:opacity-90 transition">
+                                Send Message
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <div class="col-span-2">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-heartbeat text-indigo-400 text-2xl mr-2"></i>
+                    <span class="text-xl font-bold">Viora</span>
+                </div>
+                <p class="text-gray-400 mb-4">
+                    Your AI health companion for proactive care, emotional support, and peace of mind.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Product</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Features</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Integrations</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Resources</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Help Center</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Tutorials</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 text-sm">
+                &copy; 2023 Viora Health. All rights reserved.
+            </p>
+            <div class="mt-4 md:mt-0 flex space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- The rest of your HTML content... -->
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
